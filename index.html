@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DataURI convertor for SVG</title>
+</head>
+<body>
+<h1>DataURI convertor for SVG</h1>
+<textarea id="input" style="width:100%; height:20em;" placeholder="Paste SVG code here"></textarea>
+<textarea id="output" style="width:100%; height:10em;" readonly placeholder="(Read Only) Converted code should be output here"></textarea>
+<button onclick="convert();">convert</button>
+<div><img src="" id="sample"></div>
+<script>
+function convert(){
+    var input = document.querySelector('#input');
+    var output = document.querySelector('#output');
+    var svg = input.value;
+    svg = svg.replace(/\n/g,'').replace(/<!--.*?-->/g,'');
+    svg = encodeURI(svg).replace(/#/g, '%23');
+    svg = 'data:image/svg+xml,' + svg;
+    output.innerHTML = svg;
+    document.querySelector('#sample').src = svg;
+    alert('finished!');
+}
+</script>​
+</body>
+</html>
